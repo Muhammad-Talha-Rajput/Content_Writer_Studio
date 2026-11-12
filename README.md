@@ -14,6 +14,7 @@ An AI-assisted content workspace for Grands Digital. Teams manage clients, brand
 - Durable generation jobs, step history, usage limits, bounded retries and checkpoint continuation.
 - Quality checks against the brief and references. Corrections patch the existing draft; blocking findings prevent successful version creation.
 - Manual edits create immutable versions. Assigned reviewers can approve or request changes, and Markdown/HTML export is limited to the current approved version.
+- Role-aware dashboard summaries, a searchable and filterable content library, paginated results and an export history.
 
 ## Stack and workflow
 

@@ -24,6 +24,7 @@ class ContentBrief extends Model
     }
 
     public function contentVersions() { return $this->hasMany(ContentVersion::class, 'brief_id'); }
+    public function latestVersion() { return $this->hasOne(ContentVersion::class, 'brief_id')->ofMany('version_no', 'max'); }
     public function reviewSubmissions() { return $this->hasMany(ReviewSubmission::class, 'brief_id'); }
 
     public function scopeVisibleTo(Builder $query, User $user): void

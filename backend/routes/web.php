@@ -11,6 +11,7 @@ use App\Http\Controllers\SourceController;
 use App\Http\Controllers\AiSettingsController;
 use App\Http\Controllers\GenerationController;
 use App\Http\Controllers\ReviewWorkflowController;
+use App\Http\Controllers\WorkspaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::prefix('api')->group(function () {
 
     Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::get('/me', fn (Request $request) => response()->json(['user' => $request->user()]));
+        Route::get('/dashboard', [WorkspaceController::class, 'dashboard']);
+        Route::get('/content-library', [WorkspaceController::class, 'library']);
+        Route::get('/export-history', [WorkspaceController::class, 'exportHistory']);
         Route::post('/auth/logout', [AuthController::class, 'logout']);
         Route::post('/auth/change-password', [AuthController::class, 'changePassword'])->middleware('throttle:password-recovery');
         Route::get('/clients', [ClientController::class, 'index']);
