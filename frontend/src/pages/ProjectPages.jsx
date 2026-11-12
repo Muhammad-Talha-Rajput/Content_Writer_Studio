@@ -34,7 +34,7 @@ export function ProjectDetail() {
 }
 
 export function BriefCards({ briefs, empty }) {
-  return briefs.length === 0 ? <section className="empty-panel"><h2>No briefs to show</h2><p>{empty}</p></section> : <div className="brief-list">{briefs.map(brief => <Link className="brief-row" key={brief.id} to={`/briefs/${brief.id}`}><div><span className="eyebrow">{brief.project?.client?.name || brief.content_type.toLowerCase()}</span><h3>{brief.topic}</h3><p>{brief.project?.name || 'Saved brief'} · {new Date(brief.updated_at).toLocaleDateString()}</p></div><span className="tag">{brief.is_archived ? 'Archived' : 'Draft'}</span></Link>)}</div>
+  return briefs.length === 0 ? <section className="empty-panel"><h2>No briefs to show</h2><p>{empty}</p></section> : <div className="brief-list">{briefs.map(brief => <Link className="brief-row" key={brief.id} to={`/briefs/${brief.id}`}><div><span className="eyebrow">{brief.project?.client?.name || brief.content_type.toLowerCase()}</span><h3>{brief.topic}</h3><p>{brief.project?.name || 'Saved brief'} · {new Date(brief.updated_at).toLocaleDateString()}</p></div><span className="tag">{brief.is_archived ? 'Archived' : brief.status?.replaceAll('_', ' ') || 'Draft'}</span></Link>)}</div>
 }
 
 export function BriefsPage() {

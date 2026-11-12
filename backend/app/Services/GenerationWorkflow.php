@@ -273,7 +273,8 @@ class GenerationWorkflow
             $body=implode("\n\n",array_map(fn($b)=>match($b['kind']){'HEADING'=>'## '.$b['text'],'BULLET'=>'- '.$b['text'],default=>$b['text']},$draft['blocks']));
             $version=ContentVersion::create(['brief_id'=>$brief->id,'source_run_id'=>$run->id,'author_id'=>$run->requested_by,
                 'version_no'=>(ContentVersion::where('brief_id',$brief->id)->max('version_no')??0)+1,'version_kind'=>'AI','title'=>$draft['title'],'body_markdown'=>$body,
-                'blocks'=>$draft['blocks'],'format_metadata'=>collect($draft)->only(['email_subject','preview_text','seo_title','meta_description'])->all(),'quality_findings'=>$findings]);
+                'blocks'=>$draft['blocks'],'format_metadata'=>collect($draft)->only(['email_subject','preview_text','seo_title','meta_description'])->all(),
+                'brief_snapshot'=>$run->input_snapshot['brief']??null,'quality_findings'=>$findings]);
             foreach ($draft['blocks'] as $block) foreach ($block['citations'] as $citation) {
                 $citation=$this->citation($citation,$sources);
                 Citation::firstOrCreate(['version_id'=>$version->id,'claim_anchor'=>$block['id'],'source_id'=>$citation['source_id'],'segment_ordinal'=>$citation['segment_ordinal']], ['locator'=>$citation['locator'],'supporting_excerpt'=>$citation['supporting_excerpt']]);

@@ -23,6 +23,9 @@ class ContentBrief extends Model
         return $this->belongsTo(Project::class);
     }
 
+    public function contentVersions() { return $this->hasMany(ContentVersion::class, 'brief_id'); }
+    public function reviewSubmissions() { return $this->hasMany(ReviewSubmission::class, 'brief_id'); }
+
     public function scopeVisibleTo(Builder $query, User $user): void
     {
         $query->whereHas('project', fn (Builder $projects) => $projects->visibleTo($user));

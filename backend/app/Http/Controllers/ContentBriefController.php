@@ -102,7 +102,7 @@ class ContentBriefController extends Controller
             $brief = ContentBrief::query()->lockForUpdate()->findOrFail($brief->id);
             WorkspaceAccess::version($brief, (int) $data['version']);
             abort_if($project->is_archived || $brief->is_archived, 409, 'Restore the project and brief before editing.');
-            abort_unless(in_array($brief->status, ['DRAFT', 'CHANGES_REQUESTED', 'READY_FOR_REVIEW'], true), 409, 'This brief cannot be edited at its current workflow stage.');
+            abort_unless(in_array($brief->status, ['DRAFT', 'CHANGES_REQUESTED', 'READY_FOR_REVIEW', 'APPROVED'], true), 409, 'This brief cannot be edited at its current workflow stage.');
             $this->validateReviewer($request, $client, $data, $brief);
             $brief->fill(['topic' => $data['topic'], 'content_type' => $data['content_type'],
                 'instructions' => $this->instructions($data)]);
@@ -131,7 +131,7 @@ class ContentBriefController extends Controller
             abort_if($project->is_archived, 409, 'Restore the project before changing its briefs.');
             $brief = ContentBrief::query()->lockForUpdate()->findOrFail($brief->id);
             WorkspaceAccess::version($brief, (int) $data['version']);
-            abort_if($brief->status === 'IN_PROGRESS', 409, 'Cancel the active run before archiving.');
+            abort_if(in_array($brief->status, ['IN_PROGRESS', 'IN_REVIEW'], true), 409, 'Finish or cancel the active generation/review before archiving.');
             $brief->is_archived = $data['is_archived'];
             $brief->version++;
             $brief->save();

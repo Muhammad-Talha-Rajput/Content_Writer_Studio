@@ -10,6 +10,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\AiSettingsController;
 use App\Http\Controllers\GenerationController;
+use App\Http\Controllers\ReviewWorkflowController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,11 @@ Route::prefix('api')->group(function () {
         Route::post('/runs/{run}/continue', [GenerationController::class, 'continueRun'])->whereUuid('run')->middleware('throttle:10,1');
         Route::post('/runs/{run}/revise', [GenerationController::class, 'reviseRun'])->whereUuid('run')->middleware('throttle:10,1');
         Route::get('/versions/{version}', [GenerationController::class, 'version'])->whereUuid('version');
+        Route::get('/versions/{version}/export', [ReviewWorkflowController::class, 'export'])->whereUuid('version')->middleware('throttle:30,1');
+        Route::get('/briefs/{brief}/review-workflow', [ReviewWorkflowController::class, 'index'])->whereUuid('brief');
+        Route::post('/briefs/{brief}/versions', [ReviewWorkflowController::class, 'updateDraft'])->whereUuid('brief')->middleware('throttle:30,1');
+        Route::post('/briefs/{brief}/submit-review', [ReviewWorkflowController::class, 'submit'])->whereUuid('brief')->middleware('throttle:10,1');
+        Route::post('/reviews/{submission}/decision', [ReviewWorkflowController::class, 'decide'])->whereUuid('submission')->middleware('throttle:20,1');
         Route::patch('/sources/{source}/archive', [SourceController::class, 'archive'])->whereUuid('source');
         Route::prefix('admin')->middleware('admin')->group(function () {
             Route::get('/ai-settings', [AiSettingsController::class, 'index']);

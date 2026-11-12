@@ -85,6 +85,14 @@
 .draft-citation summary { cursor: pointer; }
 .draft-citation blockquote { border-left: 2px solid #bcd2dc; margin: 10px 0; padding-left: 12px; }
 .quality-findings { margin-top: 22px; }
+.review-panel { margin-top: 24px; }
+.review-decision, .draft-editor { display: grid; gap: 14px; margin-top: 20px; padding: 20px; border: 1px solid #dce3eb; border-radius: 10px; background: #f9fbfc; }
+.review-decision label, .draft-editor label { display: grid; gap: 8px; min-width: 0; }
+.review-decision textarea, .draft-editor textarea, .draft-editor input, .draft-editor select, .review-panel select { width: 100%; min-width: 0; border: 1px solid #dce3eb; border-radius: 8px; padding: 12px; background: #fff; color: #17374b; font: inherit; }
+.draft-editor-block { display: grid; gap: 12px; min-width: 0; padding: 16px; border: 1px solid #dce3eb; border-radius: 8px; }
+.review-history { margin-top: 18px; }
+.review-history summary { cursor: pointer; }
+.review-history-item { margin-top: 12px; padding: 14px; border: 1px solid #e2e8ed; border-radius: 8px; overflow-wrap: anywhere; }
 @media (max-width: 600px) { .generated-draft { padding: 16px; } }
 .generation-panel label { display: grid; gap: 8px; min-width: 0; font-size: 14px; }
 .generation-panel label.checkbox-label { display: flex; align-items: flex-start; overflow-wrap: anywhere; }

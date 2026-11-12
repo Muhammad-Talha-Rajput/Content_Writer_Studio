@@ -2,7 +2,7 @@
 
 An AI-assisted content workspace for Grands Digital. Teams manage clients, brand profiles, projects and briefs, attach references, and generate drafts through a tracked planning, research, writing and quality-check workflow.
 
-**Status:** active development. Client management, source processing and AI generation are implemented. Complete editorial approval, manual editing and export remain pending. This repository contains application source, not a production deployment.
+**Status:** active development. Client management, source processing, AI generation and an initial review workflow are implemented. Final milestone verification is pending. This repository contains application source, not a production deployment.
 
 ## Features
 
@@ -13,6 +13,7 @@ An AI-assisted content workspace for Grands Digital. Teams manage clients, brand
 - Configurable OpenRouter, Gemini, Ollama and Hugging Face providers with encrypted server-side credentials.
 - Durable generation jobs, step history, usage limits, bounded retries and checkpoint continuation.
 - Quality checks against the brief and references. Corrections patch the existing draft; blocking findings prevent successful version creation.
+- Manual edits create immutable versions. Assigned reviewers can approve or request changes, and Markdown/HTML export is limited to the current approved version.
 
 ## Stack and workflow
 
