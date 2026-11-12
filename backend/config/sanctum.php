@@ -6,7 +6,7 @@ use Laravel\Sanctum\Http\Middleware\AuthenticateSession;
 
 return [
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS',
-        '127.0.0.1:5173,localhost:5173,127.0.0.1:4173,localhost:4173,127.0.0.1:8000')),
+        '127.0.0.1:5174,localhost:5174,127.0.0.1:4173,localhost:4173,127.0.0.1:8000')),
     'guard' => ['web'],
     'expiration' => null,
     'token_prefix' => '',

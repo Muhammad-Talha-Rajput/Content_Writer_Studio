@@ -42,9 +42,9 @@ class HealthTest extends TestCase
     public function test_api_allows_the_configured_frontend_origin(): void
     {
         DB::shouldReceive('select')->once()->with('SELECT 1')->andReturn([]);
-        $this->withHeaders(['Origin' => 'http://127.0.0.1:5173'])->getJson('/api/health')
+        $this->withHeaders(['Origin' => 'http://127.0.0.1:5174'])->getJson('/api/health')
             ->assertOk()
-            ->assertHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5173');
+            ->assertHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5174');
     }
 
     public function test_api_does_not_allow_an_unconfigured_origin(): void

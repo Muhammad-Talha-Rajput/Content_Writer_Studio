@@ -61,8 +61,8 @@ try {
     if (($values['APP_URL'] ?? '') === 'http://localhost') {
         setLocalValue($envPath, 'APP_URL', 'http://127.0.0.1:8000');
     }
-    foreach (['FRONTEND_URL' => 'http://127.0.0.1:5173',
-        'CORS_ALLOWED_ORIGINS' => 'http://127.0.0.1:5173,http://localhost:5173',
+    foreach (['FRONTEND_URL' => 'http://127.0.0.1:5174',
+        'CORS_ALLOWED_ORIGINS' => 'http://127.0.0.1:5174,http://localhost:5174',
         'OLLAMA_URL' => 'http://127.0.0.1:11434', 'OLLAMA_MODEL' => 'qwen2.5:7b'] as $key => $value) {
         if (empty($values[$key])) {
             setLocalValue($envPath, $key, $value);

@@ -103,7 +103,7 @@ npm run dev
 .\scripts\start-generation-worker.ps1
 ```
 
-Open **http://127.0.0.1:5173**. Keep the database and both workers running. Worker launchers retry process/database failures and prevent duplicate launchers for the same queue. They do not install automatic startup after reboot. If a job remains queued, check its worker and database first.
+Open **http://127.0.0.1:5174**. Keep the database and both workers running. Worker launchers retry process/database failures and prevent duplicate launchers for the same queue. They do not install automatic startup after reboot. If a job remains queued, check its worker and database first.
 
 Vite proxies `/api` and `/sanctum` to the API. Use the same browser hostname consistently for cookie sessions.
 
